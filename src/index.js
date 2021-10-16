@@ -1,3 +1,11 @@
+// import React from "react";
+// import ReactDOM from "react-dom";
+// import "./index.css";
+// import App from "./components/App/App.jsx";
+
+// ReactDOM.render(<App />, document.getElementById("root"));
+
+
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 import '../src/index.css'; // need to import css, because in React it doesn't go to index.html
@@ -34,6 +42,14 @@ const getAllSupportTasks = async () => {
 //     method: 'GET'
 //   });
 // };
+
+// Source: https://codepen.io/melnik909/pen/BZpJLN
+<label class="field field_v1">
+    <input class="field__input" placeholder=""></input>
+    <span class="field__label-wrap">
+      <span class="field__label">Release task number</span>
+    </span>
+</label>
 
 function App() {
   return (
