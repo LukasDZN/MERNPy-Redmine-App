@@ -11,17 +11,23 @@ const anTaskSheetUpdate = async () => {
     let anTaskSheetUpdateReponse = await fetch('http://localhost:5000/anTaskSheetUpdate', {
       method: 'GET'
     });
-    return null
+    return null;
 };
-  
+
+
+
 // Either get data for the first time or refresh redmine task data.
 const getAllSupportTasks = async () => {
     let getAllSupportTasksReponse = await fetch('http://localhost:5000/getAllSupportTasks', {
         method: 'GET'
     });
-    return null
+    let supportTasksJson = await JSON.parse(getAllSupportTasksReponse)
+
+    return supportTasksJson;
 };
-  
+
+
+
 // Either get data for the first time or refresh redmine task data.
 // const createRfc = async () => {
 //   let createRfcReponse = await fetch('http://localhost:5000/', {
@@ -52,6 +58,7 @@ const autoBuildRelease = async () => {
 
     return null
 };
+
 
   
 function App() {
