@@ -1,5 +1,10 @@
 import Topbar from "./topbar/Topbar.jsx";
 import Sidebar from "./sidebar/Sidebar.jsx";
+import NotFound from "./notFound/NotFound.jsx";
+import NotTribeUser from "./notFound/NotTribeUser.jsx";
+
+// Material UI
+import Button from '@mui/material/Button';
 
 import "./app.css"
 
@@ -9,10 +14,15 @@ import ReactDOM from "react-dom";
 import { 
     BrowserRouter, 
     Route, 
-    Routes 
+    Routes,
+    Link,
+    Navigate
 } from "react-router-dom";
 
 import Login from './login/login.jsx';
+import { useContext } from "react";
+
+import { myContext } from "./context/Context.jsx";
 
 
 // Update the announcement sheet (anTaskSheetUpdate)
@@ -90,19 +100,26 @@ const autoBuildRelease = async () => {
 };
 
 
-
+//  <Chart/>
   
 function App() {
+
+    const userObject = useContext(myContext);
+
     return (
-        <BrowserRouter> 
+        <BrowserRouter>
+            {/* Input components here in order to render them on every page / route. */}
             <Routes>
                 <Route path="/" element={<Topbar />} />
-                <Route path="/dashboard" element={<><Topbar/><Sidebar/><Chart/></>}>
-                    {/* Child route */}
+                <Route path="/dashboard" element={<> <div> <Topbar/> <Sidebar/> </div> </>}>
+                    <Route path="/dashboard/scripts" element={<Button variant="contained">Contained</Button>} />
                 </Route>
                 <Route path="/login" element={<Login />} />
+                <Route path="/logout" element={() => {window.location.href = "http://localhost:8000/logout";}} />
+                <Route path="/notTribeUser" element={<NotTribeUser />} />
+                <Route path="*" element={<NotFound />} />
             </Routes>
-        </BrowserRouter> 
+        </BrowserRouter>
     )
 };
 

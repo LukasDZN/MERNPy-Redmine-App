@@ -13,7 +13,7 @@ import {
   WorkOutline,
   Report,
 } from "@material-ui/icons";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 export default function Sidebar() {
   return (
@@ -22,53 +22,65 @@ export default function Sidebar() {
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Functions</h3>
           <ul className="sidebarList">
-            <Link to="/" className="link" />
+            <Link to="/dashboard/scripts" className="link" >
             <li className="sidebarListItem">  
             {/* This can be set to: className="sidebarListItem active" */}
               <LineStyle className="sidebarIcon" />
-              Home
+              Scripts
             </li>
-            <Link to="/" className="link" />
+            </Link>
+            <Link to="/test" className="link" >
             <li className="sidebarListItem">
               <WorkOutline className="sidebarIcon" />
               Releases and RFCs
             </li>
-            <Link to="/" className="link" />
+            </Link>
+            <Link to="/" className="link" >
             <li className="sidebarListItem">
               <DynamicFeed className="sidebarIcon" />
               Scheme announcements
             </li>
-            <Link to="/" className="link" />
+            </Link>
+            <Link to="/" className="link" >
             <li className="sidebarListItem">
               <BarChart className="sidebarIcon" />
               Friday report
             </li>
+            </Link>
           </ul>
         </div>
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Statistics</h3>
           <ul className="sidebarList">
-            <Link to="/dashboard" className="link"/>
+            <Link to="/dashboard" className="link">
             <li className="sidebarListItem">
             <Timeline className="sidebarIcon" />
             Dashboard
             </li>
+            </Link>
           </ul>
         </div>
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Settings</h3>
           <ul className="sidebarList">
-            <Link to="/" className="link" />
+            <Link to="/" className="link" >
             <li className="sidebarListItem">
               <MailOutline className="sidebarIcon" />
               Theme
             </li>
+            </Link>
             <Link to="/login" className="link" >
             <li className="sidebarListItem">
-              <Report className="sidebarIcon" />
+              <ChatBubbleOutline className="sidebarIcon" />
               Slack alerts
             </li>
             </Link>
+            <a href={"http://localhost:5000/logout"}>
+            <li className="sidebarListItem">
+              <Report className="sidebarIcon" />
+              Log out
+            </li>
+            </a>
           </ul>
         </div>
       </div>
