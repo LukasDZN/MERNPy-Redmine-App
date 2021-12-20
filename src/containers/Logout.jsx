@@ -1,5 +1,3 @@
-import React from 'react'
-
 export default function Logout() {
 
     const googleLogin = () => {
@@ -7,8 +5,6 @@ export default function Logout() {
     };
 
     return (
-        <div>
-            
-        </div>
+        googleLogin()
     )
 }

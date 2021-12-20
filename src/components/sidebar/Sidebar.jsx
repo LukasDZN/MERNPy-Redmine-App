@@ -2,10 +2,6 @@ import "./sidebar.css";
 import {
   LineStyle,
   Timeline,
-  TrendingUp,
-  PermIdentity,
-  Storefront,
-  AttachMoney,
   BarChart,
   MailOutline,
   DynamicFeed,
@@ -13,74 +9,95 @@ import {
   WorkOutline,
   Report,
 } from "@material-ui/icons";
-import { Link, Navigate } from "react-router-dom";
+import { NavLink, useResolvedPath, useMatch } from "react-router-dom";
 
 export default function Sidebar() {
+
+  // Active state styling example (for NavLink only): https://reactrouter.com/docs/en/v6/api#navlink
+
+  function ActiveLinkClass(to) {
+    let resolved = useResolvedPath(to);
+    let match = useMatch({ path: resolved.pathname, end: true });
+    // Result (either just 'sidebarListItem' or 'sidebarListItem activeRoute' if Route is active)
+    let resultClassString = 'sidebarListItem'.concat('', match ? ' activeRoute' : '')
+    return resultClassString;
+  };
+
   return (
     <div className="sidebar">
       <div className="sidebarWrapper">
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Functions</h3>
           <ul className="sidebarList">
-            <Link to="/dashboard/scripts" className="link" >
-            <li className="sidebarListItem">  
-            {/* This can be set to: className="sidebarListItem active" */}
-              <LineStyle className="sidebarIcon" />
-              Scripts
-            </li>
-            </Link>
-            <Link to="/test" className="link" >
-            <li className="sidebarListItem">
-              <WorkOutline className="sidebarIcon" />
-              Releases and RFCs
-            </li>
-            </Link>
-            <Link to="/" className="link" >
-            <li className="sidebarListItem">
-              <DynamicFeed className="sidebarIcon" />
-              Scheme announcements
-            </li>
-            </Link>
-            <Link to="/" className="link" >
-            <li className="sidebarListItem">
-              <BarChart className="sidebarIcon" />
-              Friday report
-            </li>
-            </Link>
+            
+            <NavLink to="/dashboard/scripts" >
+              <li className={ActiveLinkClass('/dashboard/scripts')} >  
+                <LineStyle className='sidebarIcon' />
+                Scripts
+              </li>
+            </NavLink>
+
+            <NavLink to="/test" className="link" >
+              <li className={ActiveLinkClass('/test')} >
+                <WorkOutline className="sidebarIcon" />
+                Releases and RFCs
+              </li>
+            </NavLink>
+
+            <NavLink to="/" className="link" >
+              <li className={ActiveLinkClass('/')}>
+                <DynamicFeed className="sidebarIcon" />
+                Scheme announcements
+              </li>
+            </NavLink>
+
+            <NavLink to="/fridayReportAutomation" className="link" >
+              <li className={ActiveLinkClass('/fridayReportAutomation')}>
+                <BarChart className="sidebarIcon" />
+                Friday report
+              </li>
+            </NavLink>
+
           </ul>
         </div>
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Statistics</h3>
           <ul className="sidebarList">
-            <Link to="/dashboard" className="link">
-            <li className="sidebarListItem">
-            <Timeline className="sidebarIcon" />
-            Dashboard
-            </li>
-            </Link>
+
+            <NavLink to="/dashboard/statistics" className="link">
+              <li className={ActiveLinkClass('/dashboard/statistics')}>
+              <Timeline className="sidebarIcon" />
+              Dashboard
+              </li>
+            </NavLink>
+
           </ul>
         </div>
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Settings</h3>
           <ul className="sidebarList">
-            <Link to="/" className="link" >
-            <li className="sidebarListItem">
-              <MailOutline className="sidebarIcon" />
-              Theme
-            </li>
-            </Link>
-            <Link to="/login" className="link" >
-            <li className="sidebarListItem">
-              <ChatBubbleOutline className="sidebarIcon" />
-              Slack alerts
-            </li>
-            </Link>
+
+            <NavLink to="/" className="link" >
+              <li className="sidebarListItem">
+                <MailOutline className={ActiveLinkClass('/')} />
+                Theme
+              </li>
+            </NavLink>
+
+            <NavLink to="/login" className="link" >
+              <li className="sidebarListItem">
+                <ChatBubbleOutline className="sidebarIcon" />
+                Slack alerts
+              </li>
+            </NavLink>
+
             <a href={"http://localhost:5000/logout"}>
-            <li className="sidebarListItem">
-              <Report className="sidebarIcon" />
-              Log out
-            </li>
+              <li className="sidebarListItem">
+                <Report className="sidebarIcon" />
+                Log out
+              </li>
             </a>
+
           </ul>
         </div>
       </div>

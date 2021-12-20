@@ -1,0 +1,20 @@
+.buttonAndExplainerContainer {
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: left;
+    align-items: flex-start;
+    margin-left: 0px;
+    margin-right: 2em;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+.buttonContainer {
+    min-width: 200px;
+    margin-right: 1.5em;
+}
+
+.buttonExplainer {
+    min-width: none;
+}

@@ -1,5 +1,5 @@
 import "./chart.css"
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from 'recharts';
+import { XAxis, Tooltip, ResponsiveContainer, LineChart, Line } from 'recharts'; // AreaChart, Area, YAxis, CartesianGrid
 
 export default function Chart() {
 
@@ -179,7 +179,7 @@ export default function Chart() {
     //   var createdDateTime = new Date('2021-03-25T11:16:19Z');
 
     let xAxisData = [];
-    let yAxisData = [];
+    // let yAxisData = [];
 
 
     for (let taskKey in realData) {

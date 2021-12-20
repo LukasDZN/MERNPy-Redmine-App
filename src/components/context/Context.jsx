@@ -1,7 +1,7 @@
-import React, { createContext, useEffect } from "react";
+// import React, { createContext, useEffect } from "react";
 
 // Context guide: https://dmitripavlutin.com/react-context-and-usecontext/
-export const myContext = createContext({});
+// export const myContext = createContext({});
 // export default function Context(props) {
 
 //     const [userObject, setUserObject] = useState();
