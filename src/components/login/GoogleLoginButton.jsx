@@ -1,6 +1,7 @@
 // Source: https://newbedev.com/html-sign-in-with-google-button-css-color-code-example
 
 import './GoogleLoginButton.css'
+import googleLogo from './g-logo.png';
 
 export default function GoogleLoginButton() {
 
@@ -12,7 +13,8 @@ export default function GoogleLoginButton() {
         <div className='g-sign-in-button'>
             <div className='content-wrapper'>
                 <div className='logo-wrapper'>
-                    <img alt="google-logo" src='https://developers.google.com/identity/images/g-logo.png' />
+                {/* <img alt="google-logo" src='https://developers.google.com/identity/images/g-logo.png' /> */}
+                <img alt="google-logo" src={googleLogo} />
                 </div>
                 <span className='text-container' onClick={googleLogin}>
                     <span>Sign in with Google</span>

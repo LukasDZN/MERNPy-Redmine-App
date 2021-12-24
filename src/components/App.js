@@ -3,9 +3,10 @@
 // Global CSS
 import './app.css';
 
+// API
+import redirectMiddleware from '../api/redirectMiddleware.js';
+
 // Containers
-import Topbar from "./topbar/Topbar.jsx";
-import Sidebar from "./sidebar/Sidebar.jsx";
 import NotFound from "../containers/NotFound.jsx";
 import NotTribeUser from "../containers/NotTribeUser.jsx";
 import Login from '../containers/Login.jsx';
@@ -34,6 +35,36 @@ import BaseLayout from "../layouts/BaseLayout.jsx";
 function App() {
 
     // const userObject = useContext(myContext);
+
+    // Check whether the user is already logged in or not
+    async function checkIsAuthenticated() {
+
+        // Send a request to check if the user is already logged in
+        let logoutResponse = await fetch('http://localhost:5000/checkIsAuthenticated', {
+            method: 'GET',
+            credentials: 'include'
+        });
+        let jsonResponse = await logoutResponse.json();
+
+        // If current route is not /login and the user IS NOT logged in, redirect to /login
+        if (window.location.pathname !== '/login') {
+            try {
+                redirectMiddleware(jsonResponse);
+            } catch (error) {
+                console.log(error);
+            };
+        // If current route is /login and the user IS logged in, redirect to /dashboard
+        } 
+        else if (window.location.pathname == '/login' && jsonResponse.authenticationStatus == "user is authenticated") {
+            try {
+                redirectMiddleware( {'redirectUrl':'http://localhost:3000/dashboard'} );
+            } catch (error) {
+                console.log(error);
+            };
+        };
+    };
+
+    checkIsAuthenticated();
 
     return (
         <BrowserRouter>

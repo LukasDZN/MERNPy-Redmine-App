@@ -91,12 +91,12 @@ export default function Sidebar() {
               </li>
             </NavLink>
 
-            <a href={"http://localhost:5000/logout"}>
+            <NavLink to="/logout" className="link" >
               <li className="sidebarListItem">
                 <Report className="sidebarIcon" />
                 Log out
               </li>
-            </a>
+            </NavLink>
 
           </ul>
         </div>

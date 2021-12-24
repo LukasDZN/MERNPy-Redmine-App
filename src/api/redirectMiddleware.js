@@ -1,5 +1,3 @@
-import React from 'react'
-
 // If 'redirectUrl' is present in the response, redirect to that url.
 export default function redirectMiddleware(responseObject) {
 
@@ -8,4 +6,4 @@ export default function redirectMiddleware(responseObject) {
         window.location.href = responseObject.redirectUrl;
     };
 
-}
+};
