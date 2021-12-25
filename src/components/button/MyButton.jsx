@@ -1,10 +1,9 @@
 import './myButton.css';
 import React from 'react'
 import Button from '@mui/material/Button';
+import timeSince from '../../api/helperFunctions/timeSince.js';
 
-// import LoadingButton from '@mui/lab/LoadingButton';
-
-export default function MyButton({buttonFunction, buttonText, buttonExplanation}) {
+export default function MyButton({buttonFunction, buttonText, buttonExplanation, buttonLoading='', lastUpdatedTimestamp=''}) {
 
     return (
         <div className='buttonAndExplainerContainer'>
@@ -12,8 +11,11 @@ export default function MyButton({buttonFunction, buttonText, buttonExplanation}
                 <Button
                     onClick={buttonFunction}
                     variant="contained"
-                    >{buttonText}
+                    >{buttonText}&nbsp;{buttonLoading}
                 </Button>
+                <div style={{color: 'gray', fontSize: '11px', paddingTop: '8px', paddingLeft: '6px'}}>
+                    {lastUpdatedTimestamp != '' ? 'Last updated: ' + timeSince(lastUpdatedTimestamp) + ' ago' : ''} 
+                </div>
             </div>
             <div className='buttonExplainer'>
                 {buttonExplanation}

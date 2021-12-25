@@ -1,4 +1,3 @@
-import React from 'react';
 import logout from '../api/logout';
 
 export default function Logout() {
