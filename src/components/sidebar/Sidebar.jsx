@@ -3,11 +3,13 @@ import {
   LineStyle,
   Timeline,
   BarChart,
-  MailOutline,
   DynamicFeed,
   ChatBubbleOutline,
   WorkOutline,
   Report,
+  AccessTime,
+  FilterList,
+  SettingsBrightness,
 } from "@material-ui/icons";
 import { NavLink, useResolvedPath, useMatch } from "react-router-dom";
 
@@ -27,25 +29,29 @@ export default function Sidebar() {
     <div className="sidebar">
       <div className="sidebarWrapper">
         <div className="sidebarMenu">
-          <h3 className="sidebarTitle">Functions</h3>
+          <h3 className="sidebarTitle">Scripts</h3>
           <ul className="sidebarList">
+
+          <h4 className="sidebarTitle">Generic</h4>
             
-            <NavLink to="/dashboard/scripts" >
-              <li className={ActiveLinkClass('/dashboard/scripts')} >  
+            <NavLink to="/na1" >
+              <li className={ActiveLinkClass('/na1')} >  
                 <LineStyle className='sidebarIcon' />
                 Scripts
               </li>
             </NavLink>
 
-            <NavLink to="/test" className="link" >
-              <li className={ActiveLinkClass('/test')} >
+          <h4 className="sidebarTitle">ISAC scripts</h4>
+          
+            <NavLink to="/na2" className="link" >
+              <li className={ActiveLinkClass('/na2')} >
                 <WorkOutline className="sidebarIcon" />
                 Releases and RFCs
               </li>
             </NavLink>
 
-            <NavLink to="/" className="link" >
-              <li className={ActiveLinkClass('/')}>
+            <NavLink to="/na3" className="link" >
+              <li className={ActiveLinkClass('/na3')}>
                 <DynamicFeed className="sidebarIcon" />
                 Scheme announcements
               </li>
@@ -64,8 +70,8 @@ export default function Sidebar() {
           <h3 className="sidebarTitle">Statistics</h3>
           <ul className="sidebarList">
 
-            <NavLink to="/dashboard/statistics" className="link">
-              <li className={ActiveLinkClass('/dashboard/statistics')}>
+            <NavLink to="/statistics" className="link">
+              <li className={ActiveLinkClass('/statistics')}>
               <Timeline className="sidebarIcon" />
               Dashboard
               </li>
@@ -73,20 +79,42 @@ export default function Sidebar() {
 
           </ul>
         </div>
+
+        <div className="sidebarMenu">
+          <h3 className="sidebarTitle">Tools</h3>
+          <ul className="sidebarList">
+
+            <NavLink to="/na7" className="link">
+              <li className={ActiveLinkClass('/na7')}>
+              <AccessTime className="sidebarIcon" />
+              CRON jobs
+              </li>
+            </NavLink>
+
+            <NavLink to="/na8" className="link">
+              <li className={ActiveLinkClass('/na8')}>
+              <FilterList className="sidebarIcon" />
+              Markdown sorter
+              </li>
+            </NavLink>
+
+          </ul>
+        </div>
+
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Settings</h3>
           <ul className="sidebarList">
 
-            <NavLink to="/" className="link" >
+            <NavLink to="/na4" className="link" >
               <li className="sidebarListItem">
-                <MailOutline className={ActiveLinkClass('/')} />
+                <SettingsBrightness className={ActiveLinkClass('/na4')} />
                 Theme
               </li>
             </NavLink>
 
-            <NavLink to="/login" className="link" >
+            <NavLink to="/na5" className="link" >
               <li className="sidebarListItem">
-                <ChatBubbleOutline className="sidebarIcon" />
+                <ChatBubbleOutline className={ActiveLinkClass('/na5')} />
                 Slack alerts
               </li>
             </NavLink>

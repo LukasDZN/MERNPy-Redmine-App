@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 // CSS
 import '../layouts/baseLayout.css';
@@ -38,12 +38,9 @@ export default function FridayReportAutomation() {
     };
 
     // --- Refresh loop ---------------------------------------------------------
-    // Refresh frequency state
-    const [minutes, setMinutes] = useState(180);
 
-    // A button function to start the ticket (and the API call function indirectly)
+    // A button function to start the ticker (and the API call function indirectly)
     function startRequests() {
-
         // Turn the repeated API requests on and off
         if (ticking === true) {
             setTicking(false);
@@ -51,42 +48,73 @@ export default function FridayReportAutomation() {
         else if (ticking === false) {
             setTicking(true);
         };
-
     };
 
+    // API request frequency in minutes (toggled by dropdown)
+    const [minutes, setMinutes] = useState(180);
     // API request counter
-    const [ticking, setTicking] = useState(false),
-    [count, setCount] = useState(0)
+    const [ticking, setTicking] = useState(false), // Activate/Deactive counter
+    [count, setCount] = useState(0) // Counter
     // Last updated counter
-    const [refreshLoopLastUpdated, setRefreshLoopLastUpdated] = useState('');
+    const refreshLoopLastUpdatedRef = useRef('');
     const [refreshLoopLastUpdatedCounter, setRefreshLoopLastUpdatedCounter] = useState(0);
 
+    // On using multiple useEffect in one component: https://stackoverflow.com/questions/54002792/in-general-is-it-better-to-use-one-or-many-useeffect-hooks-in-a-single-component
+    // [] dependency will make the useEffect run only once - after the initial render
+    // [count] dependency will make the useEffect run every time the count changes (it tracks only that one variable), otherwise it will re-render every time the component renders.
+    // useRef cannot be a dependency, because it doesn't cause a re-render.
     useEffect(() => {
         // --- One-time refresh ---
-        const oneTimeFunctionTimer = setTimeout(() => lastUpdated != '' && setLastUpdatedCounter(lastUpdatedCounter+1), 1e3)
+        const oneTimeFunctionTimer = setTimeout(
+            () => {
+                if (lastUpdated != '') {
+                    setLastUpdatedCounter(lastUpdatedCounter + 1)
+                }
+            }, 1e3)
+        
+        return () => clearTimeout(oneTimeFunctionTimer);
 
-        // --- Refresh loop -------
+    }, [lastUpdated, lastUpdatedCounter]);
+
+    // --- Refresh loop ---------------------------------------------------------
+    useEffect(() => {
+        // --- API ticker and firing API when ticker is == to X ---
         // Setting the timer to tick every second
-        const timer = setTimeout(() => ticking && setCount(count+1), 1e3)
+        const timer = setTimeout(
+            () => {
+                if (ticking === true) {
+                    setCount(count + 1)
+                }
+            }, 1e3);
         // If the timer is equal to the specified period - call the API
         if (count % minutes === 0 && ticking === true) { 
             randomApi();
-            setRefreshLoopLastUpdated(Date.now());
+            refreshLoopLastUpdatedRef.current = Date.now();
         };
+        // console.log('Ticking active?: ' + ticking + ' | Count: ' + count);
+        // console.log('Minutes dropdown value: ' + minutes);
 
+        return () => clearTimeout(timer);
+
+    }, [ticking, count, minutes]);
+    
+    useEffect(() => {
+        // --- Last updated for the refresh loop ---
         // Last updated counter
-        const refreshLoopLastUpdatedTimer = setTimeout(() => setRefreshLoopLastUpdated != '' && setRefreshLoopLastUpdatedCounter(refreshLoopLastUpdatedCounter+1), 1e3)
-        // console.log('Last updated: ' + refreshLoopLastUpdated + 'Counter: ' + refreshLoopLastUpdatedCounter);
+        const refreshLoopLastUpdatedTimer = setTimeout(
+            () => { 
+                if (refreshLoopLastUpdatedRef.current != '') {
+                    setRefreshLoopLastUpdatedCounter(refreshLoopLastUpdatedCounter + 1)
+                }
+            }, 1e3);
+        // console.log('Last updated: ' + refreshLoopLastUpdatedRef.current + ' | Counter: ' + refreshLoopLastUpdatedCounter);
 
-        return () => {
-            clearTimeout(timer);
-            clearTimeout(oneTimeFunctionTimer);
-            clearTimeout(refreshLoopLastUpdatedTimer);
-        }
-    }) // adding [] makes it not work.
+        return () => clearTimeout(refreshLoopLastUpdatedTimer);
+
+    }, [refreshLoopLastUpdatedCounter, refreshLoopLastUpdatedRef.current]);
     // --------------------------------------------------------------------------
 
-    
+
     return (
         <div className='container'>
             <Topbar />
@@ -129,7 +157,7 @@ export default function FridayReportAutomation() {
                         buttonFunction={startRequests}
                         buttonText={'Refresh data loop'}
                         buttonLoading={ticking === true ? <CircularProgress size={24} color='inherit' /> : ''}
-                        lastUpdatedTimestamp={refreshLoopLastUpdated}
+                        lastUpdatedTimestamp={refreshLoopLastUpdatedRef.current}
                         buttonExplanation={<p>Refreshes the <a href="https://docs.google.com/spreadsheets/d/1UKXN9HOL9_igz1a3Gi72V5bMJdxFEElzilrgJnigYAk/edit#gid=356703711" target="_blank" rel="noreferrer">Friday Automation Sheet</a> data continuously for the given time interval in minutes.</p>}
                     /> 
 

@@ -74,6 +74,7 @@ function App() {
                 {/* Main */}
                 <Route path="/dashboard" element={<FridayReportAutomation />} />
                 <Route path="/fridayReportAutomation" element={<FridayReportAutomation />} />
+                <Route path="/statistics" element={<BaseLayout />} />
 
                 {/* Temp testing */}
                 <Route path="/test" element={<BaseLayout />} />
@@ -83,7 +84,7 @@ function App() {
                 <Route path="/logout" element={<Logout />} />
                 <Route path="/notTribeUser" element={<NotTribeUser />} />
                 <Route path="*" element={<NotFound />} />
-                <Route path={"/"} element={<Login />} />
+                <Route path={"/"} element={<FridayReportAutomation />} />
 
             </Routes>
         </BrowserRouter>

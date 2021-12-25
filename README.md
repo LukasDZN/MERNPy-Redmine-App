@@ -1,7 +1,3 @@
-
-# Purpose / goal
-To make a visually appealing, simple, functional, modern UI.
-
 # Resources
 - Guide used for this project: https://www.youtube.com/watch?v=aTPkos3LKi8
 - UI design: https://www.figma.com/file/jIAWLAHrtj2AoltmpfbOr6/Tribe-Statistics?node-id=2%3A2
