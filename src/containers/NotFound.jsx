@@ -2,7 +2,7 @@ import '../components/notFound/notFound.css';
 
 export default function NotFound() {
     return (
-        <a href="http://localhost:3000/login">
+        <a>
             <header className="top-header" />
 
             {/* <!--dust particel--> */}
@@ -31,7 +31,10 @@ export default function NotFound() {
                 <div className="error__content">
                     <div className="error__message message">
                         <h1 className="message__title">404</h1>
-                        <p className="message__text">Page Not Found</p>
+                        <p className="message__text">Page not found.</p>
+                    </div>
+                    <div className="error__nav e-nav">
+                        <a href="/login" className="e-nav__link"> </a>
                     </div>
                 </div>
                 {/* <!-- END Content --> */}

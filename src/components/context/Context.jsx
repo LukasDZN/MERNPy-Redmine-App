@@ -8,7 +8,7 @@
 
 //     useEffect(() => {
 //         try {
-//             let response = await fetch(`http://localhost:5000/randomApi`, {
+//             let response = await fetch(`http://locaalhost:5000/randomApi`, {
 //                 method: 'GET',
 //                 credentials: 'include'
 //             });

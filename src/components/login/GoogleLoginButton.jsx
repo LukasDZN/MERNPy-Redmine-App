@@ -2,11 +2,12 @@
 
 import './GoogleLoginButton.css'
 import googleLogo from './g-logo.png';
+import config from '../config.js';
 
 export default function GoogleLoginButton() {
 
     const googleLogin = () => {
-        window.open("http://localhost:5000/auth/google", "_self")
+        window.open(config().BACKEND_DOMAIN + "/auth/google", "_self")
     };
 
     return (

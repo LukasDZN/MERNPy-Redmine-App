@@ -1,9 +1,10 @@
 import redirectMiddleware from "./redirectMiddleware";
+import config from "../components/config";
 
 // API for testing purposes
 export default async function randomApi() {
     try {
-        let randomApiResponse = await fetch('http://localhost:5000/randomApi', {
+        let randomApiResponse = await fetch(config().BACKEND_DOMAIN + '/randomApi', {
             method: 'GET',
             credentials: 'include'
         });

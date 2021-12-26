@@ -1,3 +1,5 @@
+import config from "../components/config";
+
 // Either get data for the first time or refresh redmine task data.
 const autoBuildRelease = async () => {
 
@@ -9,7 +11,7 @@ const autoBuildRelease = async () => {
     console.log(maxTimeSpent)
     
     try {
-        let response = await fetch(`http://localhost:5000/autoBuildRelease/${releaseTaskId}/${maxTimeSpent}`, {
+        let response = await fetch(config().BACKEND_DOMAIN + `/autoBuildRelease/${releaseTaskId}/${maxTimeSpent}`, {
             method: 'GET'
         });
     }

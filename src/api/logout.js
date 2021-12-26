@@ -1,8 +1,9 @@
 import redirectMiddleware from "./redirectMiddleware";
+import config from "../components/config.js";
 
 export default async function Logout() {
     try {
-        let logoutResponse = await fetch('http://localhost:5000/logout', {
+        let logoutResponse = await fetch(config().BACKEND_DOMAIN + '/logout', {
             method: 'GET',
             credentials: 'include'
         });

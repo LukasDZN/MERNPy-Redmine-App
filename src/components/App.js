@@ -30,6 +30,9 @@ import Chart from "./chart/Chart.jsx";
 // Temp testing
 import BaseLayout from "../layouts/BaseLayout.jsx";
 
+// ENV variables
+import config from './config.js';
+
 // --- App -------------------------------------------------------------------------------
   
 function App() {
@@ -40,14 +43,14 @@ function App() {
     async function checkIsAuthenticated() {
 
         // Send a request to check if the user is already logged in
-        let logoutResponse = await fetch('http://localhost:5000/checkIsAuthenticated', {
+        let logoutResponse = await fetch(config().BACKEND_DOMAIN + '/checkIsAuthenticated', {
             method: 'GET',
             credentials: 'include'
         });
         let jsonResponse = await logoutResponse.json();
 
         // If current route is not /login and the user IS NOT logged in, redirect to /login
-        if (window.location.pathname !== '/login') {
+        if (window.location.pathname !== '/login' && window.location.pathname !== '/notTribeUser') {
             try {
                 redirectMiddleware(jsonResponse);
             } catch (error) {
@@ -57,16 +60,18 @@ function App() {
         } 
         else if (window.location.pathname == '/login' && jsonResponse.authenticationStatus == "user is authenticated") {
             try {
-                redirectMiddleware( {'redirectUrl':'http://localhost:3000/dashboard'} );
+                redirectMiddleware( {'redirectUrl':'/dashboard'} );
             } catch (error) {
                 console.log(error);
             };
-        };
+        }
+        
     };
 
     checkIsAuthenticated();
 
     return (
+        
         <BrowserRouter>
             {/* Input components here in order to render them on every page / route. */}
             <Routes>

@@ -1,7 +1,9 @@
+import config from "../components/config";
+
 // Update the announcement sheet (anTaskSheetUpdate)
 const anTaskSheetUpdate = async () => {
     try {
-        let anTaskSheetUpdateReponse = await fetch('http://localhost:5000/anTaskSheetUpdate', {
+        let anTaskSheetUpdateReponse = await fetch(config().BACKEND_DOMAIN + '/anTaskSheetUpdate', {
             method: 'GET'
         });
         return null;
@@ -9,4 +11,4 @@ const anTaskSheetUpdate = async () => {
         console.log(error);
         return null;
     };
-};
+}; 

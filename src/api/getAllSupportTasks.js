@@ -1,7 +1,9 @@
+import config from "../components/config";
+
 // Either get data for the first time or refresh redmine task data.
 const getAllSupportTasks = async () => {
     try {
-        let getAllSupportTasksReponse = await fetch('http://localhost:5000/getAllSupportTasks', {
+        let getAllSupportTasksReponse = await fetch(config().BACKEND_DOMAIN + '/getAllSupportTasks', {
             method: 'GET'
         });
 

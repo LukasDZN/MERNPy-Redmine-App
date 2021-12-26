@@ -2,7 +2,7 @@ import '../components/notFound/notFound.css';
 
 export default function NotTribeUser() {
     return (
-        <a href="http://localhost:3000/login">
+        <a>
             <header className="top-header" />
 
             {/* <!-- dust particle --> */}
@@ -22,12 +22,11 @@ export default function NotTribeUser() {
                         <p className="message__text">Only Tribe users are allowed to register.</p>
                     </div>
                     <div className="error__nav e-nav">
-                        <a href="http://localhost:3000/login" className="e-nav__link"> </a>
+                        <a href="/login" className="e-nav__link"> </a>
                     </div>
                 </div>
                 {/* <!-- END Content --> */}
             </section>
-
         </a>
     );
 };
