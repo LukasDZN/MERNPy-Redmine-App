@@ -33,6 +33,7 @@ import BaseLayout from "../layouts/BaseLayout.jsx";
 // ENV variables
 import config from './config.js';
 
+
 // --- App -------------------------------------------------------------------------------
   
 function App() {
@@ -42,30 +43,39 @@ function App() {
     // Check whether the user is already logged in or not
     async function checkIsAuthenticated() {
 
-        // Send a request to check if the user is already logged in
-        let logoutResponse = await fetch(config().BACKEND_DOMAIN + '/checkIsAuthenticated', {
-            method: 'GET',
-            credentials: 'include'
-        });
-        let jsonResponse = await logoutResponse.json();
+        try {
+            // Send a request to check if the user is already logged in
+            // let logoutResponse = await fetch(config().BACKEND_DOMAIN + '/checkIsAuthenticated', {
+            let logoutResponse = await fetch(config().BACKEND_DOMAIN + '/checkIsAuthenticated', {
+                method: 'GET',
+                credentials: 'include'
+            });
 
-        // If current route is not /login and the user IS NOT logged in, redirect to /login
-        if (window.location.pathname !== '/login' && window.location.pathname !== '/notTribeUser') {
-            try {
-                redirectMiddleware(jsonResponse);
-            } catch (error) {
-                console.log(error);
-            };
-        // If current route is /login and the user IS logged in, redirect to /dashboard
-        } 
-        else if (window.location.pathname == '/login' && jsonResponse.authenticationStatus == "user is authenticated") {
-            try {
-                redirectMiddleware( {'redirectUrl':'/dashboard'} );
-            } catch (error) {
-                console.log(error);
-            };
+            let jsonResponse = await logoutResponse.json();
+
+            // If current route is not /login and the user IS NOT logged in, redirect to /login
+            if (window.location.pathname !== '/login' && window.location.pathname !== '/notTribeUser') {
+                try {
+                    redirectMiddleware(jsonResponse);
+                } catch (error) {
+                    console.log(error);
+                };
+            // If current route is /login and the user IS logged in, redirect to /dashboard
+            } 
+            else if (window.location.pathname == '/login' && jsonResponse.authenticationStatus == "user is authenticated") {
+                try {
+                    redirectMiddleware( {'redirectUrl':'/dashboard'} );
+                } catch (error) {
+                    console.log(error);
+                };
+            }
         }
-        
+        // If an error during fetching occurs, log the error and redirect to the login page
+        catch (error) {
+            console.log(error);
+            // redirectMiddleware( {'redirectUrl':'/login'} ); // could add time interval to refresh every X seconds.
+        }
+
     };
 
     checkIsAuthenticated();
