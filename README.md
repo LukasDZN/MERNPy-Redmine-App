@@ -4,12 +4,16 @@
 
 # Quick start
 
+Development server:
 npm update
 npm install
 npm audit fix
 
 npm start
 
+Serve static files (using a production build):
+npm install -g serve
+serve -s build
 
 # Material UI guide:
 https://mui.com/getting-started/installation/
