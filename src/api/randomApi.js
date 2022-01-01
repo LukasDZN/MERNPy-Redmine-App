@@ -4,7 +4,7 @@ import config from "../components/config";
 // API for testing purposes
 export default async function randomApi() {
     try {
-        let randomApiResponse = await fetch(config().BACKEND_DOMAIN + '/api/randomApi', {
+        let randomApiResponse = await fetch(config().BACKEND_DOMAIN + config().BACKEND_PORT + '/api/randomApi', {
             method: 'GET',
             credentials: 'include'
         });

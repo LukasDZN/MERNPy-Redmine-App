@@ -9,7 +9,8 @@ export default function config() {
 
     if (mode === 'production') {
         return {
-            'BACKEND_DOMAIN': 'http://tribeapp.ddns.net'
+            'BACKEND_DOMAIN': 'http://tribeapp.ddns.net',
+            'BACKEND_PORT': '5000'
             // 'BACKEND_DOMAIN': 'http://78.62.57.80:5000'
         }
     } 
