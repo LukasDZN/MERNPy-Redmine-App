@@ -3,7 +3,7 @@ import config from "../components/config.js";
 
 export default async function Logout() {
     try {
-        let logoutResponse = await fetch(config().BACKEND_DOMAIN + '/logout', {
+        let logoutResponse = await fetch(config().BACKEND_DOMAIN + '/api/logout', {
             method: 'GET',
             credentials: 'include'
         });

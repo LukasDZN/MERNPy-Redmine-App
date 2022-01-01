@@ -46,7 +46,7 @@ function App() {
         try {
             // Send a request to check if the user is already logged in
             // let logoutResponse = await fetch(config().BACKEND_DOMAIN + '/checkIsAuthenticated', {
-            let logoutResponse = await fetch(config().BACKEND_DOMAIN + '/checkIsAuthenticated', {
+            let logoutResponse = await fetch(config().BACKEND_DOMAIN + '/api/checkIsAuthenticated', {
                 method: 'GET',
                 credentials: 'include'
             });

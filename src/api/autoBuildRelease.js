@@ -11,7 +11,7 @@ const autoBuildRelease = async () => {
     console.log(maxTimeSpent)
     
     try {
-        let response = await fetch(config().BACKEND_DOMAIN + `/autoBuildRelease/${releaseTaskId}/${maxTimeSpent}`, {
+        let response = await fetch(config().BACKEND_DOMAIN + `/api/autoBuildRelease/${releaseTaskId}/${maxTimeSpent}`, {
             method: 'GET'
         });
     }

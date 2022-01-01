@@ -3,7 +3,7 @@ import config from "../components/config";
 // Update the announcement sheet (anTaskSheetUpdate)
 const anTaskSheetUpdate = async () => {
     try {
-        let anTaskSheetUpdateReponse = await fetch(config().BACKEND_DOMAIN + '/anTaskSheetUpdate', {
+        let anTaskSheetUpdateReponse = await fetch(config().BACKEND_DOMAIN + '/api/anTaskSheetUpdate', {
             method: 'GET'
         });
         return null;
