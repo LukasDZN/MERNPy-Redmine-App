@@ -9,7 +9,8 @@ export default function config() {
 
     if (mode === 'production') {
         return {
-            'BACKEND_DOMAIN': 'http://tribeserver.ddns.net'
+            'BACKEND_DOMAIN': 'http://tribeapp.ddns.net'
+            // 'BACKEND_DOMAIN': 'http://78.62.57.80:5000'
         }
     } 
     else if (mode === 'development') {
