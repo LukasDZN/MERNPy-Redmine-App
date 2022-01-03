@@ -7,7 +7,7 @@ import config from '../config.js';
 export default function GoogleLoginButton() {
 
     const googleLogin = () => {
-        window.open(config().BACKEND_DOMAIN + "/auth/google", "_self")
+        window.open(config().BACKEND_DOMAIN + config().BACKEND_PORT + "/auth/google", "_self")
     };
 
     return (
