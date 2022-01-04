@@ -15,7 +15,8 @@ export default function config() {
     } 
     else if (mode === 'development') {
         return {
-            'BACKEND_DOMAIN': 'http://localhost:5000'
+            'BACKEND_DOMAIN': 'http://localhost',
+            'BACKEND_PORT': ':5000'
         }
     }
 }
