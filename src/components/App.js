@@ -12,6 +12,7 @@ import NotTribeUser from "../containers/NotTribeUser.jsx";
 import Login from '../containers/Login.jsx';
 import Logout from '../containers/Logout.jsx';
 import FridayReportAutomation from '../containers/FridayReportAutomation.jsx';
+import CreateRfcTasks from '../containers/createRfcTasks.jsx';
 
 // Router tools
 import { 
@@ -90,6 +91,7 @@ function App() {
                 <Route path="/dashboard" element={<FridayReportAutomation />} />
                 <Route path="/fridayReportAutomation" element={<FridayReportAutomation />} />
                 <Route path="/statistics" element={<BaseLayout />} />
+                <Route path="/createRfcTasks" element={<CreateRfcTasks />} />
 
                 {/* Temp testing */}
                 <Route path="/test" element={<BaseLayout />} />

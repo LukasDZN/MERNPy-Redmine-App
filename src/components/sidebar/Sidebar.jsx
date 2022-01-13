@@ -43,8 +43,8 @@ export default function Sidebar() {
 
           <h4 className="sidebarTitle">ISAC scripts</h4>
           
-            <NavLink to="/na2" className="link" >
-              <li className={ActiveLinkClass('/na2')} >
+            <NavLink to="/createRfcTasks" className="link" >
+              <li className={ActiveLinkClass('/createRfcTasks')} >
                 <WorkOutline className="sidebarIcon" />
                 Releases and RFCs
               </li>

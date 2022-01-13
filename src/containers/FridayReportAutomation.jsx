@@ -30,7 +30,7 @@ export default function FridayReportAutomation() {
 
     async function oneTimeRefresh() {
         setRequestInProgress(true);
-        let refreshRequest = await fridayReportAutomation();
+        let refreshRequest = fridayReportAutomation();
         if (refreshRequest === 'success') {
             setRequestInProgress(false);
         };
@@ -88,7 +88,7 @@ export default function FridayReportAutomation() {
             }, 1e3);
         // If the timer is equal to the specified period - call the API
         if (count % minutes === 0 && ticking === true) { 
-            randomApi();
+            fridayReportAutomation();
             refreshLoopLastUpdatedRef.current = Date.now();
         };
         // console.log('Ticking active?: ' + ticking + ' | Count: ' + count);
@@ -153,13 +153,15 @@ export default function FridayReportAutomation() {
                         <MenuItem onClick={() => setMinutes(600)} value={600}>10</MenuItem>
                     </Select>
 
-                    <MyButton   
-                        buttonFunction={startRequests}
-                        buttonText={'Refresh data loop'}
-                        buttonLoading={ticking === true ? <CircularProgress size={24} color='inherit' /> : ''}
-                        lastUpdatedTimestamp={refreshLoopLastUpdatedRef.current}
-                        buttonExplanation={<p>Refreshes the <a href="https://docs.google.com/spreadsheets/d/1UKXN9HOL9_igz1a3Gi72V5bMJdxFEElzilrgJnigYAk/edit#gid=356703711" target="_blank" rel="noreferrer">Friday Automation Sheet</a> data continuously for the given time interval in minutes.</p>}
-                    /> 
+                    <div>
+                        <MyButton   
+                            buttonFunction={startRequests}
+                            buttonText={'Refresh data loop'}
+                            buttonLoading={ticking === true ? <CircularProgress size={24} color='inherit' /> : ''}
+                            lastUpdatedTimestamp={refreshLoopLastUpdatedRef.current}
+                            buttonExplanation={<p>Refreshes the <a href="https://docs.google.com/spreadsheets/d/1UKXN9HOL9_igz1a3Gi72V5bMJdxFEElzilrgJnigYAk/edit#gid=356703711" target="_blank" rel="noreferrer">Friday Automation Sheet</a> data continuously for the given time interval in minutes.</p>}
+                        />
+                    </div>
 
 
                 </div>

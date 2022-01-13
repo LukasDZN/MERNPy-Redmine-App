@@ -3,12 +3,13 @@ import React from 'react'
 import Button from '@mui/material/Button';
 import timeSince from '../../api/helperFunctions/timeSince.js';
 
-export default function MyButton({buttonFunction, buttonText, buttonExplanation, buttonLoading='', lastUpdatedTimestamp=''}) {
+export default function MyButton({buttonFunction, buttonText, buttonExplanation, buttonLoading='', lastUpdatedTimestamp='', disabled=false}) {
 
     return (
         <div className='buttonAndExplainerContainer'>
             <div className="buttonContainer">
                 <Button
+                    disabled={disabled}
                     onClick={buttonFunction}
                     variant="contained"
                     >{buttonText}&nbsp;{buttonLoading}
