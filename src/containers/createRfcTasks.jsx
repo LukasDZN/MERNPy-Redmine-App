@@ -34,9 +34,10 @@ export default function CreateRfcTasks() {
     async function postRfcTasks() {
         setRequestInProgress(true);
         let refreshRequest = await createRfcTasks(releaseId, startTime);
-        if (refreshRequest === 'success') {
-            setRequestInProgress(false);
-        };
+        // if (refreshRequest === 'success') {
+        //     setRequestInProgress(false);
+        // };
+        setRequestInProgress(false);
         console.log(releaseId, startTime);
         setLastUpdated(Date.now());
     };
