@@ -16,6 +16,11 @@ import TextField from '@mui/material/TextField';
 // API
 import createRfcTasks from "../api/createRfcTasks.js";
 
+/*
+Works when using App: development environment (on port 3000) + npm run dev for server
+But when deployed on Pi it was hanging.
+@to do / @TODO: fix
+*/
 
 export default function CreateRfcTasks() {
 
