@@ -39,6 +39,9 @@ import config from './config.js';
   
 function App() {
 
+    // NOTE: When hosting the server locally, must use App on port 3000 with production mode + server npm run dev.
+    // Because static compiled App files are made to serve the production URL.
+
     // const userObject = useContext(myContext);
 
     // Check whether the user is already logged in or not
