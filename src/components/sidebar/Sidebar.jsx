@@ -32,14 +32,14 @@ export default function Sidebar() {
           <h3 className="sidebarTitle">Scripts</h3>
           <ul className="sidebarList">
 
-          <h4 className="sidebarTitle">Generic</h4>
+          {/* <h4 className="sidebarTitle">Generic</h4>
             
             <NavLink to="/na1" >
               <li className={ActiveLinkClass('/na1')} >  
                 <LineStyle className='sidebarIcon' />
                 Scripts
               </li>
-            </NavLink>
+            </NavLink> */}
 
           <h4 className="sidebarTitle">ISAC scripts</h4>
           
@@ -50,12 +50,12 @@ export default function Sidebar() {
               </li>
             </NavLink>
 
-            <NavLink to="/na3" className="link" >
+            {/* <NavLink to="/na3" className="link" >
               <li className={ActiveLinkClass('/na3')}>
                 <DynamicFeed className="sidebarIcon" />
                 Scheme announcements
               </li>
-            </NavLink>
+            </NavLink> */}
 
             <NavLink to="/fridayReportAutomation" className="link" >
               <li className={ActiveLinkClass('/fridayReportAutomation')}>
@@ -80,7 +80,7 @@ export default function Sidebar() {
           </ul>
         </div>
 
-        <div className="sidebarMenu">
+        {/* <div className="sidebarMenu">
           <h3 className="sidebarTitle">Tools</h3>
           <ul className="sidebarList">
 
@@ -99,13 +99,13 @@ export default function Sidebar() {
             </NavLink>
 
           </ul>
-        </div>
+        </div> */}
 
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Settings</h3>
           <ul className="sidebarList">
 
-            <NavLink to="/na4" className="link" >
+            {/* <NavLink to="/na4" className="link" >
               <li className="sidebarListItem">
                 <SettingsBrightness className={ActiveLinkClass('/na4')} />
                 Theme
@@ -117,7 +117,7 @@ export default function Sidebar() {
                 <ChatBubbleOutline className={ActiveLinkClass('/na5')} />
                 Slack alerts
               </li>
-            </NavLink>
+            </NavLink> */}
 
             <NavLink to="/logout" className="link" >
               <li className="sidebarListItem">

@@ -10,7 +10,7 @@ import Sidebar from "../components/sidebar/Sidebar.jsx";
 import Chart from "../components/chart/Chart.jsx";
 
 
-export default function BaseLayout({  ContentContainer = "contentContainer is empty. This is filler text by default."  }) {
+export default function BaseLayout({  ContentContainer = " "  }) {
     
     return (
         <div className='container'>

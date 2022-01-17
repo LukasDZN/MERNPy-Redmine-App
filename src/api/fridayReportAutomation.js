@@ -15,5 +15,6 @@ export default async function fridayReportAutomation() {
         return 'success';
     } catch (error) {
         console.log(error);
+        return 'error';
     };
 };

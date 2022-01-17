@@ -31,9 +31,10 @@ export default function FridayReportAutomation() {
     async function oneTimeRefresh() {
         setRequestInProgress(true);
         let refreshRequest = await fridayReportAutomation();
-        if (refreshRequest === 'success') {
-            setRequestInProgress(false);
-        };
+        // if (refreshRequest === 'success') {
+        //     setRequestInProgress(false);
+        // };
+        setRequestInProgress(false);
         setLastUpdated(Date.now());
     };
 
