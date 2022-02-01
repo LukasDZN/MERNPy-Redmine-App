@@ -9,10 +9,10 @@ const createRfcTasks = async (releaseId, startTime) => {
         });
         let createRfcReponseJson = await createRfcReponse.json();
         redirectMiddleware(createRfcReponseJson);
-        return 'success';
+        return createRfcReponse['data'];
     } catch (error) {
         console.log(error);
-        return 'error';
+        return 'error in createRfcTasks.js';
     };
 };
 

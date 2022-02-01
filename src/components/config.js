@@ -4,7 +4,7 @@
 export default function config() {
 
     // Set the backend domain (change the var below when developing locally)
-    let mode = 'production'; 
+    let mode = 'development'; 
 
     if (mode === 'production') {
         return {

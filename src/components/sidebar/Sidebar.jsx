@@ -1,15 +1,9 @@
 import "./sidebar.css";
 import {
-  LineStyle,
   Timeline,
   BarChart,
-  DynamicFeed,
-  ChatBubbleOutline,
   WorkOutline,
   Report,
-  AccessTime,
-  FilterList,
-  SettingsBrightness,
 } from "@material-ui/icons";
 import { NavLink, useResolvedPath, useMatch } from "react-router-dom";
 

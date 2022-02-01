@@ -2,7 +2,7 @@ import '../components/notFound/notFound.css';
 
 export default function NotTribeUser() {
     return (
-        <a>
+        <div>
             <header className="top-header" />
 
             {/* <!-- dust particle --> */}
@@ -27,6 +27,6 @@ export default function NotTribeUser() {
                 </div>
                 {/* <!-- END Content --> */}
             </section>
-        </a>
+        </div>
     );
 };

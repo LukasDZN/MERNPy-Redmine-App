@@ -26,7 +26,7 @@ import {
 // import { myContext } from "./context/Context.jsx";
 
 // External libraries - Chart
-import Chart from "./chart/Chart.jsx";
+// import Chart from "./chart/Chart.jsx";
 
 // Temp testing
 import BaseLayout from "../layouts/BaseLayout.jsx";
@@ -66,7 +66,7 @@ function App() {
                 };
             // If current route is /login and the user IS logged in, redirect to /dashboard
             } 
-            else if (window.location.pathname == '/login' && jsonResponse.authenticationStatus == "user is authenticated") {
+            else if (window.location.pathname === '/login' && jsonResponse.authenticationStatus === "user is authenticated") {
                 try {
                     redirectMiddleware( {'redirectUrl':'/dashboard'} );
                 } catch (error) {

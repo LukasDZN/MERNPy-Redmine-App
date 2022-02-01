@@ -14,14 +14,18 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import CircularProgress from '@mui/material/CircularProgress';
+import TextField from '@mui/material/TextField';
 
 // API
 import fridayReportAutomation from "../api/fridayReportAutomation.js";
 
 // Temp testing
-import randomApi from '../api/randomApi.js';
+// import randomApi from '../api/randomApi.js';
 
 export default function FridayReportAutomation() {
+
+    // Python response  state
+    const [pythonResponse, setPythonResponse] = useState('');
 
     // --- One-time refresh -----------------------------------------------------
     const [requestInProgress, setRequestInProgress] = useState(false);
@@ -30,7 +34,8 @@ export default function FridayReportAutomation() {
 
     async function oneTimeRefresh() {
         setRequestInProgress(true);
-        let refreshRequest = await fridayReportAutomation();
+        let oneTimeRefreshResponse = await fridayReportAutomation();
+        setPythonResponse(oneTimeRefreshResponse);
         // if (refreshRequest === 'success') {
         //     setRequestInProgress(false);
         // };
@@ -68,7 +73,7 @@ export default function FridayReportAutomation() {
         // --- One-time refresh ---
         const oneTimeFunctionTimer = setTimeout(
             () => {
-                if (lastUpdated != '') {
+                if (lastUpdated !== '') {
                     setLastUpdatedCounter(lastUpdatedCounter + 1)
                 }
             }, 1e3)
@@ -88,9 +93,13 @@ export default function FridayReportAutomation() {
                 }
             }, 1e3);
         // If the timer is equal to the specified period - call the API
-        if (count % minutes === 0 && ticking === true) { 
-            fridayReportAutomation();
-            refreshLoopLastUpdatedRef.current = Date.now();
+        if (count % minutes === 0 && ticking === true) {
+            async function responseDisplay() {
+                let loopRefreshResponse = await fridayReportAutomation();
+                setPythonResponse(loopRefreshResponse);
+                refreshLoopLastUpdatedRef.current = Date.now();
+            };
+            responseDisplay();
         };
         // console.log('Ticking active?: ' + ticking + ' | Count: ' + count);
         // console.log('Minutes dropdown value: ' + minutes);
@@ -104,7 +113,7 @@ export default function FridayReportAutomation() {
         // Last updated counter
         const refreshLoopLastUpdatedTimer = setTimeout(
             () => { 
-                if (refreshLoopLastUpdatedRef.current != '') {
+                if (refreshLoopLastUpdatedRef.current !== '') {
                     setRefreshLoopLastUpdatedCounter(refreshLoopLastUpdatedCounter + 1)
                 }
             }, 1e3);
@@ -112,7 +121,8 @@ export default function FridayReportAutomation() {
 
         return () => clearTimeout(refreshLoopLastUpdatedTimer);
 
-    }, [refreshLoopLastUpdatedCounter, refreshLoopLastUpdatedRef.current]);
+    // }, [refreshLoopLastUpdatedCounter, refreshLoopLastUpdatedRef.current]);
+    }, [refreshLoopLastUpdatedCounter]);
     // --------------------------------------------------------------------------
 
 
@@ -164,6 +174,20 @@ export default function FridayReportAutomation() {
                         />
                     </div>
 
+                    {/* Python response */}
+                    <br></br>
+                    <div>
+                        <TextField
+                            id="outlined-multiline-flexible"
+                            label="Response: "
+                            multiline
+                            fullWidth
+                            rows={25}
+                            defaultValue="-"
+                            // value={JSON.stringify(pythonResponse) === '""' ? '-' : JSON.stringify(pythonResponse)}
+                            value={pythonResponse}
+                        />
+                    </div>
 
                 </div>
             </div>

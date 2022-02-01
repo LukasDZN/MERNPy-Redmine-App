@@ -11,10 +11,10 @@ export default async function fridayReportAutomation() {
             credentials: 'include'
         });
         let jsonResponse = await anTaskSheetUpdateReponse.json();
-        redirectMiddleware(jsonResponse);
-        return 'success';
+        redirectMiddleware(jsonResponse); // if redirectUrl is present -> redirect to that URL.
+        return jsonResponse['data'];
     } catch (error) {
         console.log(error);
-        return 'error';
+        return 'error in fridayReportAutomation.js';
     };
 };

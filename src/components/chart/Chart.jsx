@@ -8,8 +8,12 @@ export default function Chart() {
 
     const [chartData, setChartData] = useState({});
 
-    useEffect(async () => {
-      setChartData(await getChartData());
+    useEffect(() => {
+        async function setChartDataFunction() {
+            let chartResponse = await getChartData()
+            setChartData(chartResponse);
+        } 
+        setChartDataFunction();
     }, []);
 
     console.log(chartData);

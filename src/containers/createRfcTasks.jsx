@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
 // CSS
 import '../layouts/baseLayout.css';
@@ -31,9 +31,13 @@ export default function CreateRfcTasks() {
     const [releaseId, setReleaseId] = useState('');
     const [startTime, setStartTime] = useState('');
 
+    // Python response  state
+    const [pythonResponse, setPythonResponse] = useState('');
+
     async function postRfcTasks() {
         setRequestInProgress(true);
-        let refreshRequest = await createRfcTasks(releaseId, startTime);
+        let createRfcTasksResponse = await createRfcTasks(releaseId, startTime);
+        setPythonResponse(createRfcTasksResponse);
         // if (refreshRequest === 'success') {
         //     setRequestInProgress(false);
         // };
@@ -45,7 +49,7 @@ export default function CreateRfcTasks() {
     useEffect(() => {
         const oneTimeFunctionTimer = setTimeout(
             () => {
-                if (lastUpdated != '') {
+                if (lastUpdated !== '') {
                     setLastUpdatedCounter(lastUpdatedCounter + 1)
                 }
             }, 1e3)
@@ -61,17 +65,17 @@ export default function CreateRfcTasks() {
     let isDisabled;
     
     // Validate input
-    if (releaseId.length != 5 && releaseId !== '' || isNaN(releaseId)) { // isNaN checks if the value is a number
+    if ((releaseId.length !== 5 && releaseId !== '') || isNaN(releaseId)) { // isNaN checks if the value is a number
         inputPropsReleaseId.error = true;
         inputPropsReleaseId.helperText = 'Incorrect value';
         isDisabled = true;
     }
-    if (startTime.length != 2 && startTime !== '' || isNaN(startTime) || startTime > 23 || startTime < 0) {
+    if ((startTime.length !== 2 && startTime !== '') || isNaN(startTime) || startTime > 23 || startTime < 0) {
         inputPropsStartTime.error = true;
         inputPropsStartTime.helperText = 'Incorrect value';
         isDisabled = true;
     }
-    if (releaseId == '' || startTime == '') {
+    if (releaseId === '' || startTime === '') {
         isDisabled = true;
     }
 
@@ -110,6 +114,22 @@ export default function CreateRfcTasks() {
                             buttonExplanation={<p>Creates RFCs for all environments for the specified release ID.</p>}
                         />
                     </div>
+
+                    {/* Python response */}
+                    <br></br>
+                    <div>
+                        <TextField
+                            id="outlined-multiline-flexible"
+                            label="Response: "
+                            multiline
+                            fullWidth
+                            rows={10}
+                            defaultValue="-"
+                            // value={JSON.stringify(pythonResponse) === '""' ? '-' : JSON.stringify(pythonResponse)}
+                            value={pythonResponse}
+                        />
+                    </div>
+                    
                 </div>
             </div>
         </div>

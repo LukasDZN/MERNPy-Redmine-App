@@ -2,7 +2,7 @@ import '../components/notFound/notFound.css';
 
 export default function NotFound() {
     return (
-        <a>
+        <div>
             <header className="top-header" />
 
             {/* <!--dust particel--> */}
@@ -39,6 +39,6 @@ export default function NotFound() {
                 </div>
                 {/* <!-- END Content --> */}
             </section>
-        </a>
+        </div>
     );
 };

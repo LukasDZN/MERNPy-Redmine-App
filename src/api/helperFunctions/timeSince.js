@@ -14,7 +14,7 @@ export default function timeSince(timeStamp) {
         if (secondsPast > 86400) {
             let day = timeStamp.getDate();
             let month = timeStamp.toDateString().match(/ [a-zA-Z]*/)[0].replace(" ", "");
-            let year = timeStamp.getFullYear() == now.getFullYear() ? "" : " " + timeStamp.getFullYear();
+            let year = timeStamp.getFullYear() === now.getFullYear() ? "" : " " + timeStamp.getFullYear();
             return day + " " + month + year;
         }
     } catch(e) {
