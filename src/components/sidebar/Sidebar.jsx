@@ -4,6 +4,7 @@ import {
   BarChart,
   WorkOutline,
   Report,
+  DynamicFeed,
 } from "@material-ui/icons";
 import { NavLink, useResolvedPath, useMatch } from "react-router-dom";
 
@@ -26,14 +27,14 @@ export default function Sidebar() {
           <h3 className="sidebarTitle">Scripts</h3>
           <ul className="sidebarList">
 
-          {/* <h4 className="sidebarTitle">Generic</h4>
+          <h4 className="sidebarTitle">Generic</h4>
             
-            <NavLink to="/na1" >
-              <li className={ActiveLinkClass('/na1')} >  
-                <LineStyle className='sidebarIcon' />
-                Scripts
+            <NavLink to="/FridayReportAutomation" className="link" >
+              <li className={ActiveLinkClass('/FridayReportAutomation')}>
+                <BarChart className="sidebarIcon" />
+                Friday report
               </li>
-            </NavLink> */}
+            </NavLink>
 
           <h4 className="sidebarTitle">ISAC scripts</h4>
           
@@ -44,17 +45,10 @@ export default function Sidebar() {
               </li>
             </NavLink>
 
-            {/* <NavLink to="/na3" className="link" >
-              <li className={ActiveLinkClass('/na3')}>
+            <NavLink to="/SchemeAnnouncements" className="link" >
+              <li className={ActiveLinkClass('/SchemeAnnouncements')}>
                 <DynamicFeed className="sidebarIcon" />
                 Scheme announcements
-              </li>
-            </NavLink> */}
-
-            <NavLink to="/fridayReportAutomation" className="link" >
-              <li className={ActiveLinkClass('/fridayReportAutomation')}>
-                <BarChart className="sidebarIcon" />
-                Friday report
               </li>
             </NavLink>
 

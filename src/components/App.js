@@ -9,31 +9,45 @@ import redirectMiddleware from '../api/redirectMiddleware.js';
 // Containers
 import NotFound from "../containers/NotFound.jsx";
 import NotTribeUser from "../containers/NotTribeUser.jsx";
+
 import Login from '../containers/Login.jsx';
 import Logout from '../containers/Logout.jsx';
+
 import FridayReportAutomation from '../containers/FridayReportAutomation.jsx';
 import CreateRfcTasks from '../containers/createRfcTasks.jsx';
+import SchemeAnnouncements from '../containers/SchemeAnnouncements.jsx';
+import Statistics from '../containers/Statistics.jsx';
 
 // Router tools
 import { 
     BrowserRouter, 
     Route, 
-    Routes
+    Routes,
+    useNavigate,
 } from "react-router-dom";
 
 // React Hooks
 // import { useContext } from "react";
 // import { myContext } from "./context/Context.jsx";
+import { useEffect } from 'react';
 
 // External libraries - Chart
 // import Chart from "./chart/Chart.jsx";
 
 // Temp testing
-import BaseLayout from "../layouts/BaseLayout.jsx";
+// import BaseLayout from "../layouts/BaseLayout.jsx";
 
 // ENV variables
 import config from './config.js';
 
+// Redirect to the main page function (component)
+function RedirectToMainPage() {
+    let navigate = useNavigate();
+    useEffect (() => {
+        return navigate('/fridayReportAutomation')
+    })
+    return null;
+}
 
 // --- App -------------------------------------------------------------------------------
   
@@ -64,11 +78,11 @@ function App() {
                 } catch (error) {
                     console.log(error);
                 };
-            // If current route is /login and the user IS logged in, redirect to /dashboard
+            // If current route is /login and the user IS logged in, redirect to /fridayReportAutomation
             } 
             else if (window.location.pathname === '/login' && jsonResponse.authenticationStatus === "user is authenticated") {
                 try {
-                    redirectMiddleware( {'redirectUrl':'/dashboard'} );
+                    redirectMiddleware( {'redirectUrl':'/fridayReportAutomation'} );
                 } catch (error) {
                     console.log(error);
                 };
@@ -91,20 +105,20 @@ function App() {
             <Routes>
 
                 {/* Main */}
-                <Route path="/dashboard" element={<FridayReportAutomation />} />
                 <Route path="/fridayReportAutomation" element={<FridayReportAutomation />} />
-                <Route path="/statistics" element={<BaseLayout />} />
+                <Route path="/statistics" element={<Statistics />} />
                 <Route path="/createRfcTasks" element={<CreateRfcTasks />} />
+                <Route path="/SchemeAnnouncements" element={<SchemeAnnouncements />} />
 
                 {/* Temp testing */}
-                <Route path="/test" element={<BaseLayout />} />
+                {/* <Route path="/test" element={<BaseLayout />} /> */}
 
                 {/* Redirects */}
                 <Route path="/login" element={<Login />} />
                 <Route path="/logout" element={<Logout />} />
                 <Route path="/notTribeUser" element={<NotTribeUser />} />
                 <Route path="*" element={<NotFound />} />
-                <Route path={"/"} element={<FridayReportAutomation />} />
+                <Route path={"/"} element={<RedirectToMainPage />} />
 
             </Routes>
         </BrowserRouter>
