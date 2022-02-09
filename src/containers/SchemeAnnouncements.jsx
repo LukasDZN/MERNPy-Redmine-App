@@ -20,7 +20,6 @@ import updateAnnouncementTasks from "../api/updateAnnouncementTasks.js";
 /*
 -
 */
-
 export default function SchemeAnnouncements() {
 
     const [requestInProgress, setRequestInProgress] = useState(false);

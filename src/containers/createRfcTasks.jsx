@@ -15,6 +15,7 @@ import TextField from '@mui/material/TextField';
 
 // API
 import createRfcTasks from "../api/createRfcTasks.js";
+import createEmergencyReleaseToday from "../api/createEmergencyReleaseToday.js";
 
 /*
 -
@@ -33,15 +34,37 @@ export default function CreateRfcTasks() {
     const [pythonResponse, setPythonResponse] = useState('');
 
     async function postRfcTasks() {
-        setRequestInProgress(true);
-        let createRfcTasksResponse = await createRfcTasks(releaseId, startTime);
-        setPythonResponse(createRfcTasksResponse);
-        // if (refreshRequest === 'success') {
-        //     setRequestInProgress(false);
-        // };
-        setRequestInProgress(false);
-        console.log(releaseId, startTime);
-        setLastUpdated(Date.now());
+        try {
+            setRequestInProgress(true);
+            let createRfcTasksResponse = await createRfcTasks(releaseId, startTime);
+            setPythonResponse(createRfcTasksResponse);
+            // if (refreshRequest === 'success') {
+            //     setRequestInProgress(false);
+            // };
+            setRequestInProgress(false);
+            console.log(releaseId, startTime);
+            setLastUpdated(Date.now());
+        } catch (error) {
+            console.log(error);
+            setRequestInProgress(false);
+        }
+    };
+
+    async function createEmergencyReleaseTodayFunc() {
+        try {
+            setRequestInProgress(true);
+            let createEmergencyReleaseTodayResponse = await createEmergencyReleaseToday();
+            setPythonResponse(createEmergencyReleaseTodayResponse);
+            // if (refreshRequest === 'success') {
+            //     setRequestInProgress(false);
+            // };
+            setRequestInProgress(false);
+            console.log(releaseId, startTime);
+            setLastUpdated(Date.now());
+        } catch (error) {
+            console.log(error);
+            setRequestInProgress(false);
+        }
     };
 
     useEffect(() => {
@@ -86,6 +109,20 @@ export default function CreateRfcTasks() {
                 </div>
                 <div className='contentFlexLayout'>
                     {/* Main content goes here */}
+                    <h1>Create emergency release</h1>
+                    <hr/> 
+                    <div>
+                        <MyButton
+                            disabled={false}
+                            buttonFunction={createEmergencyReleaseTodayFunc}
+                            buttonText={'Create release'}
+                            buttonLoading={requestInProgress === true ? <CircularProgress size={24} color='inherit' /> : ''}
+                            lastUpdatedTimestamp={lastUpdated}
+                            buttonExplanation={<p>Creates an emergency release with "due date" set as today.</p>}
+                        />
+                    </div>
+
+
                     <h1>Create RFC tasks</h1>
                     <hr/>                    
                     <TextField
