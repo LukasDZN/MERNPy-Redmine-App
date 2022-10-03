@@ -35,7 +35,7 @@ export default function Topbar() {
     <div className="topbar">
       <div className="topbarWrapper">
         <div className="topLeft">
-          <span className="logo">{getCookie('userFirstName')}'s dashboard</span>
+          <span className="logo">Admin dashboard</span>
         </div>
         <div className="topRight">
           {/* <div className="topbarIconContainer">
@@ -45,7 +45,7 @@ export default function Topbar() {
           {/* <div className="topbarIconContainer">
             <Settings />
           </div> */}
-          <img src={getCookie('userPhoto')} alt="userPhoto" className="topAvatar" />
+          {/* <img src={getCookie('userPhoto')} alt="userPhoto" className="topAvatar" /> */}
         </div>
       </div>
     </div>

@@ -4,7 +4,7 @@
 export default function config() {
 
     // Set the backend domain (change the var below when developing locally)
-    let mode = 'production'; 
+    let mode = 'development'; 
 
     if (mode === 'production') {
         return {
@@ -15,7 +15,7 @@ export default function config() {
     } 
     else if (mode === 'development') {
         return {
-            'BACKEND_DOMAIN': 'http://localhost',
+            'BACKEND_DOMAIN': 'http://192.168.1.225',
             'BACKEND_PORT': ':5000'
         }
     }
