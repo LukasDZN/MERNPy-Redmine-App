@@ -15,7 +15,7 @@ export default function config() {
     } 
     else if (mode === 'development') {
         return {
-            'BACKEND_DOMAIN': 'lukaspi-desktop.local',
+            'BACKEND_DOMAIN': 'http://lukaspi-desktop.local',
             'BACKEND_PORT': ':5000'
         }
     }
