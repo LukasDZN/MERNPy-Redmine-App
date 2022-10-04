@@ -1,3 +1,4 @@
 node_modules
 yarn.lock
 gitcmd.lnk
+build/*
