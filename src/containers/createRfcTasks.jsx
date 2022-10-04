@@ -54,7 +54,7 @@ export default function CreateRfcTasks() {
         try {
             setRequestInProgress(true);
             let createEmergencyReleaseTodayResponse = await createEmergencyReleaseToday();
-            setReleaseId(JSON.parse(createEmergencyReleaseTodayResponse).issue.id);
+            setReleaseId(parseInt(JSON.parse(createEmergencyReleaseTodayResponse).issue.id));
             setPythonResponse(createEmergencyReleaseTodayResponse);
             // if (refreshRequest === 'success') {
             //     setRequestInProgress(false);
@@ -87,11 +87,11 @@ export default function CreateRfcTasks() {
     let isDisabled;
     
     // Validate input
-    if ((releaseId.length !== 5 && releaseId !== '') || isNaN(releaseId)) { // isNaN checks if the value is a number
-        inputPropsReleaseId.error = true;
-        inputPropsReleaseId.helperText = 'Incorrect value';
-        isDisabled = true;
-    }
+    // if ((releaseId.length !== 5 && releaseId !== '') || isNaN(releaseId)) { // isNaN checks if the value is a number
+    //     inputPropsReleaseId.error = true;
+    //     inputPropsReleaseId.helperText = 'Incorrect value';
+    //     isDisabled = true;
+    // }
     if ((startTime.length !== 2 && startTime !== '') || isNaN(startTime) || startTime > 23 || startTime < 0) {
         inputPropsStartTime.error = true;
         inputPropsStartTime.helperText = 'Incorrect value';
