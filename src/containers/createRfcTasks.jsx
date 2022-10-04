@@ -55,8 +55,8 @@ export default function CreateRfcTasks() {
         try {
             setRequestInProgress(true);
             let createEmergencyReleaseTodayResponse = await createEmergencyReleaseToday();
-            setReleaseIdAutofill(createEmergencyReleaseTodayResponse.issue.id)
-            setPythonResponse(JSON.stringify(createEmergencyReleaseTodayResponse));
+            setReleaseIdAutofill(JSON.parse(createEmergencyReleaseTodayResponse).issue.id)
+            setPythonResponse(createEmergencyReleaseTodayResponse);
             // if (refreshRequest === 'success') {
             //     setRequestInProgress(false);
             // };
