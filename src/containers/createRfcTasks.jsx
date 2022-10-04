@@ -32,6 +32,7 @@ export default function CreateRfcTasks() {
 
     // Python response  state
     const [pythonResponse, setPythonResponse] = useState('');
+    const [releaseIdAutofill, setReleaseIdAutofill] = useState('');
 
     async function postRfcTasks() {
         try {
@@ -54,7 +55,8 @@ export default function CreateRfcTasks() {
         try {
             setRequestInProgress(true);
             let createEmergencyReleaseTodayResponse = await createEmergencyReleaseToday();
-            setPythonResponse(createEmergencyReleaseTodayResponse);
+            setReleaseIdAutofill(createEmergencyReleaseTodayResponse.issue.id)
+            setPythonResponse(JSON.stringify(createEmergencyReleaseTodayResponse));
             // if (refreshRequest === 'success') {
             //     setRequestInProgress(false);
             // };
@@ -130,6 +132,7 @@ export default function CreateRfcTasks() {
                         required
                         id="releaseIdField"
                         label="Release ID (65149)"
+                        value={releaseIdAutofill}
                         onChange={(event) => setReleaseId(event.target.value)}
                     />
                     <TextField
