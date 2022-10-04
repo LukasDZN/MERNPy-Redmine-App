@@ -32,7 +32,6 @@ export default function CreateRfcTasks() {
 
     // Python response  state
     const [pythonResponse, setPythonResponse] = useState('');
-    // const [releaseIdAutofill, setReleaseIdAutofill] = useState('');
 
     async function postRfcTasks() {
         try {
@@ -56,7 +55,6 @@ export default function CreateRfcTasks() {
             setRequestInProgress(true);
             let createEmergencyReleaseTodayResponse = await createEmergencyReleaseToday();
             setReleaseId(JSON.parse(createEmergencyReleaseTodayResponse).issue.id);
-            setReleaseIdAutofill(JSON.parse(createEmergencyReleaseTodayResponse).issue.id)
             setPythonResponse(createEmergencyReleaseTodayResponse);
             // if (refreshRequest === 'success') {
             //     setRequestInProgress(false);
@@ -163,7 +161,7 @@ export default function CreateRfcTasks() {
                             multiline
                             fullWidth
                             rows={10}
-                            defaultValue="-"
+                            // defaultValue="-"
                             // value={JSON.stringify(pythonResponse) === '""' ? '-' : JSON.stringify(pythonResponse)}
                             value={pythonResponse}
                         />

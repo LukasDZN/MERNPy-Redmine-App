@@ -21,15 +21,15 @@ export default function Topbar() {
 
 
   // Gets the cookie and parses it (raw cookie is a string with multiple keys and values)
-  function getCookie(name) {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) {
-      let encodedResult = parts.pop().split(";").shift();
-      let finalResult = decodeURI(encodedResult);
-      return finalResult;
-    };
-  };
+  // function getCookie(name) {
+  //   const value = `; ${document.cookie}`;
+  //   const parts = value.split(`; ${name}=`);
+  //   if (parts.length === 2) {
+  //     let encodedResult = parts.pop().split(";").shift();
+  //     let finalResult = decodeURI(encodedResult);
+  //     return finalResult;
+  //   };
+  // };
 
   return (
     <div className="topbar">

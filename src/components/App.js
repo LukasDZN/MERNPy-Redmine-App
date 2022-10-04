@@ -96,7 +96,7 @@ function App() {
 
     };
 
-    checkIsAuthenticated();
+    // checkIsAuthenticated();
 
     return (
         
