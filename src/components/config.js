@@ -15,7 +15,7 @@ export default function config() {
     } 
     else if (mode === 'development') {
         return {
-            'BACKEND_DOMAIN': 'http://lukaspi-desktop.local',
+            'BACKEND_DOMAIN': 'https://tribeapp.website',
             'BACKEND_PORT': ':5000'
         }
     }
